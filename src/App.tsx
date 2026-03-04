@@ -1,10 +1,6 @@
 import { TonConnectButton } from '@tonconnect/ui-react';
 import { useState, useEffect, useRef } from 'react';
 
-const cities = {
-  Almaty: { name: "Алматы", lat: 43.2567, lng: 76.9286 }
-};
-
 function App() {
   const [lang, setLang] = useState<'kk' | 'ru'>('kk');
   const [role, setRole] = useState<'passenger' | 'driver'>('passenger');
@@ -19,15 +15,15 @@ function App() {
   };
   const t = texts[lang];
 
-  // Uber стиліндегі карта (жолаушы таңдағанда бірден толық экран)
+  // Leaflet картасы (жолаушы таңдағанда бірден толық экран шығады)
   useEffect(() => {
     if (role !== 'passenger' || typeof window === 'undefined' || !window.L) return;
 
     const map = window.L.map('map', { zoomControl: false }).setView([43.2567, 76.9286], 15);
     window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    window.L.marker([43.2567, 76.9286]).addTo(map).bindPopup("Қайдан аламыз?");
-    window.L.marker([43.2383, 76.8894]).addTo(map).bindPopup("Қайда барамыз?");
+    window.L.marker([43.2567, 76.9286]).addTo(map).bindPopup("📍 Қайдан аламыз?");
+    window.L.marker([43.2383, 76.8894]).addTo(map).bindPopup("📍 Қайда барамыз?");
 
     mapRef.current = map;
 
@@ -51,7 +47,7 @@ function App() {
         <button onClick={() => setRole('driver')} className={`flex-1 py-4 rounded-3xl font-bold text-lg ${role === 'driver' ? 'bg-blue-600' : 'text-gray-400'}`}>{t.driver}</button>
       </div>
 
-      {/* Жолаушы — Uber стилі (карта толық экран) */}
+      {/* Жолаушы — толық экран картасы (Uber сияқты) */}
       {role === 'passenger' && (
         <>
           <div id="map" className="absolute inset-0 z-0" />
@@ -82,7 +78,6 @@ function App() {
         <div className="absolute inset-0 flex items-center justify-center bg-gray-950 z-10">
           <div className="text-center">
             <h2 className="text-4xl font-bold mb-4">Жаңа заказ күтілуде...</h2>
-            <p className="text-gray-400 text-xl">Алматыда 12 такси онлайн</p>
           </div>
         </div>
       )}

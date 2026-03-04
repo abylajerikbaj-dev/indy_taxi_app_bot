@@ -19,16 +19,14 @@ function App() {
   };
   const t = texts[lang];
 
-  // Uber стиліндегі карта (жолаушы таңдағанда бірден толық экран шығады)
+  // Uber стиліндегі карта (жолаушы таңдағанда бірден толық экран)
   useEffect(() => {
     if (role !== 'passenger' || typeof window === 'undefined' || !window.L) return;
 
     const map = window.L.map('map', { zoomControl: false }).setView([43.2567, 76.9286], 15);
     window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    // Pickup маркері
     window.L.marker([43.2567, 76.9286]).addTo(map).bindPopup("Қайдан аламыз?");
-    // Destination маркері
     window.L.marker([43.2383, 76.8894]).addTo(map).bindPopup("Қайда барамыз?");
 
     mapRef.current = map;
@@ -38,7 +36,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Top bar — Uber стилі */}
+      {/* Top bar */}
       <div className="absolute top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md p-4 flex items-center gap-4">
         <div className="flex gap-2">
           <button onClick={() => setLang('kk')} className={`px-5 py-2 rounded-full text-sm font-medium ${lang === 'kk' ? 'bg-white text-black' : 'bg-gray-800'}`}>🇰🇿 Қазақша</button>
@@ -58,7 +56,7 @@ function App() {
         <>
           <div id="map" className="absolute inset-0 z-0" />
 
-          {/* Floating адрес өрістері */}
+          {/* Адрес өрістері */}
           <div className="absolute top-36 left-4 right-4 z-50 bg-white text-black rounded-3xl p-5 shadow-2xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-3 h-3 bg-green-500 rounded-full" />
@@ -70,7 +68,7 @@ function App() {
             </div>
           </div>
 
-          {/* Үлкен шақыру батырмасы (Uber сияқты) */}
+          {/* Үлкен шақыру батырмасы */}
           <div className="absolute bottom-8 left-4 right-4 z-50">
             <button className="w-full bg-green-500 hover:bg-green-600 transition-all py-6 rounded-3xl text-2xl font-bold shadow-2xl active:scale-95">
               {t.call}

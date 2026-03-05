@@ -18,7 +18,7 @@ function App() {
   };
   const t = texts[lang];
 
-  // Leaflet картасы (толық экран)
+  // Leaflet картасы (толық экран, Uber сияқты)
   useEffect(() => {
     if (role !== 'passenger' || typeof window === 'undefined' || !window.L) return;
 

@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Top bar */}
+      {/* Top bar + TON Wallet */}
       <div className="absolute top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md p-4 flex items-center gap-4">
         <div className="flex gap-2">
           <button onClick={() => setLang('kk')} className={`px-5 py-2 rounded-full text-sm font-medium ${lang === 'kk' ? 'bg-white text-black' : 'bg-gray-800'}`}>🇰🇿 Қазақша</button>
